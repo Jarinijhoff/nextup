@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* Fonts zelf gehost, alleen latin. Fraunces (zachte serif met karakter) voor
+   koppen, Work Sans voor lopende tekst. Geen "Chinese" letter: dat is een cliche. */
+@font-face {
+  font-family: "Fraunces Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/nextup/kwantung-hoogerheide/fonts/fraunces-latin-opsz-normal.woff2) format("woff2-variations");
+}
+@font-face {
+  font-family: "Work Sans Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/nextup/kwantung-hoogerheide/fonts/work-sans-latin-wght-normal.woff2) format("woff2-variations");
+}
+/* Fallbacks met size-adjust, zodat de tekst nauwelijks verspringt als het font laadt. */
+@font-face { font-family: "Fraunces Fallback"; src: local("Georgia"); size-adjust: 106%; ascent-override: 92%; descent-override: 24%; }
+@font-face { font-family: "Work Sans Fallback"; src: local("Arial"); size-adjust: 101%; ascent-override: 93%; descent-override: 23%; }
+
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Huisstijl afgeleid van de gevel: groene borden, gele letters. */
+  --color-leaf: #1d7a3e;        /* bordgroen */
+  --color-leaf-deep: #0f4d27;   /* donkerder groen, vlakken en footer */
+  --color-leaf-ink: #0a2e18;    /* bijna zwart groen, overlay en koppen op licht */
+  --color-leaf-text: #166232;   /* groen als tekst op paper: contrast 5,9:1 */
+  --color-paper: #f7f3ea;       /* warm gebroken wit */
+  --color-paper-deep: #ebe4d3;  /* lijnen en vlakken op paper */
+  --color-ink: #1b1f1c;         /* lopende tekst */
+  --color-ink-soft: #4d564f;    /* secundaire tekst, contrast 7:1 op paper */
+  --color-white: #ffffff;
+  --color-sun: #f2c21b;         /* geel uit het logo: knoppen en accenten, spaarzaam */
+  --color-sun-deep: #d6a90e;    /* hover van gele knop */
+  --color-mist: #cfe3d5;        /* lichte tekst op groen */
+
+  --font-display: "Fraunces Variable", "Fraunces Fallback", Georgia, serif;
+  --font-body: "Work Sans Variable", "Work Sans Fallback", Arial, sans-serif;
+
+  --text-xs: 0.8125rem;  --text-xs--line-height: 1.4;
+  --text-sm: 0.9375rem;  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem; --text-base--line-height: 1.6;
+  --text-lg: 1.25rem;    --text-lg--line-height: 1.5;
+  --text-xl: 1.5rem;     --text-xl--line-height: 1.25;
+  --text-2xl: 1.875rem;  --text-2xl--line-height: 1.15;
+  --text-3xl: 2.5rem;    --text-3xl--line-height: 1.05;
+  --text-4xl: 3.25rem;   --text-4xl--line-height: 1;
+  --text-5xl: 4.25rem;   --text-5xl--line-height: 0.98;
+  --text-6xl: 5.5rem;    --text-6xl--line-height: 0.95;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  --shadow-low: 0 1px 2px rgb(10 46 24 / 0.15);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { @apply bg-paper text-ink font-body text-base antialiased; }
+  h1, h2, h3 {
+    @apply font-display font-bold;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    letter-spacing: -0.025em;
+  }
+  :focus-visible { outline: 3px solid var(--color-sun); outline-offset: 3px; }
+  ::selection { background: var(--color-sun); color: var(--color-leaf-ink); }
+}
+
+@layer components {
+  .voorstelbalk { @apply bg-leaf-ink text-mist; }
+  .voorstelbalk a { @apply text-white hover:text-sun; }
+
+  /* Vlak voor materiaal dat nog van de zaak moet komen: rustig, in huisstijl,
+     herkenbaar als onderdeel van een schets. Geen stock, geen AI-beeld. */
+  .placeholder {
+    @apply relative overflow-hidden bg-leaf-deep text-mist;
+    background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgb(255 255 255 / 0.04) 14px 15px);
+  }
+  .placeholder-label { @apply font-body font-semibold text-sm tracking-wide text-mist/85; }
+  .eyebrow { @apply font-body font-semibold uppercase text-xs tracking-[0.14em] text-leaf-text; }
+  .knop { @apply inline-flex items-center gap-2 bg-sun text-leaf-ink font-body font-semibold text-base px-5 py-3 rounded-sm hover:bg-sun-deep; }
+  .knop-donker { @apply inline-flex items-center gap-2 bg-leaf-deep text-white font-body font-semibold text-base px-5 py-3 rounded-sm hover:bg-leaf-ink; }
+  .link-lijn { @apply underline underline-offset-4 decoration-2 decoration-sun hover:decoration-leaf-deep; }
+}
