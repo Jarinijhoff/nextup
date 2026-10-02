@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* Fonts zelf gehost, alleen latin, met preload in de layout. Archivo (breed,
+   zwaar) voor koppen, Source Sans 3 voor lopende tekst. */
+@font-face {
+  font-family: "Archivo Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/nextup/schildersbedrijf-de-maas/fonts/archivo-latin-wght-normal.woff2) format("woff2-variations");
+}
+@font-face {
+  font-family: "Source Sans 3 Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 900;
+  src: url(/nextup/schildersbedrijf-de-maas/fonts/source-sans-3-latin-wght-normal.woff2) format("woff2-variations");
+}
+@font-face { font-family: "Archivo Fallback"; src: local("Arial Bold"), local("Arial"); size-adjust: 104%; ascent-override: 88%; descent-override: 22%; }
+@font-face { font-family: "Source Sans Fallback"; src: local("Arial"); size-adjust: 94%; ascent-override: 95%; descent-override: 25%; }
+
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Huisstijl afgeleid van het logo: blauwe huisjes, zwarte letters. */
+  --color-ink: #14213d;         /* navy: koppen, donkere vlakken */
+  --color-ink-deep: #0b1326;    /* footer, overlay */
+  --color-ink-soft: #4a5468;    /* secundaire tekst, contrast 7,2:1 op paper */
+  --color-blue: #2a66c4;        /* logo-blauw: knoppen, lijnen, spaarzaam */
+  --color-blue-deep: #1f4f9a;   /* hover */
+  --color-blue-text: #1c4a92;   /* blauw als tekst op paper: contrast 7:1 */
+  --color-paper: #f5f6f8;       /* koel wit */
+  --color-paper-deep: #e3e7ee;  /* lijnen en vlakken */
+  --color-white: #ffffff;
+  --color-mist: #c6d3ea;        /* lichte tekst op navy */
+  --color-verf: #ffffff;
+
+  --font-display: "Archivo Variable", "Archivo Fallback", Arial, sans-serif;
+  --font-body: "Source Sans 3 Variable", "Source Sans Fallback", Arial, sans-serif;
+
+  --text-xs: 0.8125rem;  --text-xs--line-height: 1.4;
+  --text-sm: 0.9375rem;  --text-sm--line-height: 1.5;
+  --text-base: 1.125rem; --text-base--line-height: 1.55;
+  --text-lg: 1.3125rem;  --text-lg--line-height: 1.5;
+  --text-xl: 1.5rem;     --text-xl--line-height: 1.25;
+  --text-2xl: 1.875rem;  --text-2xl--line-height: 1.1;
+  --text-3xl: 2.5rem;    --text-3xl--line-height: 1.02;
+  --text-4xl: 3.25rem;   --text-4xl--line-height: 0.98;
+  --text-5xl: 4.25rem;   --text-5xl--line-height: 0.95;
+  --text-6xl: 5.5rem;    --text-6xl--line-height: 0.92;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --shadow-low: 0 1px 2px rgb(20 33 61 / 0.15);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { @apply bg-paper text-ink font-body text-base antialiased; }
+  h1, h2, h3 { @apply font-display font-extrabold; letter-spacing: -0.03em; }
+  :focus-visible { outline: 3px solid var(--color-blue); outline-offset: 3px; }
+  ::selection { background: var(--color-blue); color: var(--color-white); }
+}
+
+@layer components {
+  .voorstelbalk { @apply bg-ink-deep text-mist; }
+  .voorstelbalk a { @apply text-white hover:text-mist; }
+
+  .placeholder {
+    @apply relative overflow-hidden bg-ink text-mist;
+    background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgb(255 255 255 / 0.04) 14px 15px);
+  }
+  .placeholder-label { @apply font-body font-semibold text-sm tracking-wide text-mist/85; }
+  .eyebrow { @apply font-display font-bold uppercase text-xs tracking-[0.14em] text-blue-text; }
+  .knop { @apply inline-flex items-center gap-2 bg-blue text-white font-display font-bold text-base px-5 py-3 rounded-sm hover:bg-blue-deep; }
+  .knop-licht { @apply inline-flex items-center gap-2 bg-white text-ink font-display font-bold text-base px-5 py-3 rounded-sm hover:bg-paper-deep; }
+  .link-lijn { @apply underline underline-offset-4 decoration-2 decoration-blue hover:decoration-ink; }
+}
