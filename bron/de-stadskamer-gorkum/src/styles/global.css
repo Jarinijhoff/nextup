@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* Fonts zelf gehost. Young Serif voor koppen: een warme, wat eigenwijze serif die
+   past bij het serif-logo en de huiskamersfeer; daarom hier geen zware schreefloze
+   kop zoals op de andere demo's. Onest voor lopende tekst en de kaart: rustig en
+   goed leesbaar, ook voor prijzen. */
+@import "@fontsource/young-serif/latin-400.css";
+@import "@fontsource-variable/onest/wght.css";
+
+@theme {
+  /* Standaardpalet van Tailwind weg: alleen eigen tokens bestaan. */
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Avond in een huiskamer aan het plein: diep wijnrood, crème papier van een
+     menukaart, en het oranje dat de zaak nu al als eigen kleur gebruikt. */
+  --color-wine: #2a1419;        /* donkere vlakken en koppen */
+  --color-wine-soft: #3b1f25;   /* vlakken op wine */
+  --color-blush: #d8bfb8;       /* gedempte tekst op wine, 9,6:1 */
+  --color-cream: #f6efe4;       /* lichte achtergrond, menukaartpapier */
+  --color-cream-deep: #e8dccb;  /* lijnen en vlakken op cream */
+  --color-cocoa: #5e4a43;       /* secundaire tekst op cream, 7,2:1 */
+  --color-ember: #d2691e;       /* het oranje van de zaak: knoppen op donker, accenten */
+  --color-ember-deep: #b8571a;  /* hover */
+  --color-ember-text: #a34a12;  /* oranje als tekst op cream, 5,3:1 */
+  --color-white: #ffffff;
+
+  --font-display: "Young Serif", Georgia, serif;
+  --font-body: "Onest Variable", system-ui, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.4375rem;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.12;
+  --text-3xl: 2.5rem;
+  --text-3xl--line-height: 1.05;
+  --text-4xl: 3.25rem;
+  --text-4xl--line-height: 1;
+  --text-5xl: 4.5rem;
+  --text-5xl--line-height: 0.98;
+
+  --radius-sm: 3px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 1rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    @apply bg-cream text-wine font-body text-base antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display font-normal;
+    letter-spacing: -0.02em;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ember);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .placeholder {
+    @apply relative overflow-hidden bg-wine-soft text-blush;
+    /* Het rieten patroon van een stoelzitting, heel zacht: herkenbaar als schets. */
+    background-image:
+      repeating-linear-gradient(45deg, rgb(255 255 255 / 0.035) 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.035) 0 6px, transparent 6px 12px);
+  }
+  .placeholder-label {
+    @apply font-display text-lg text-cream;
+  }
+  .eyebrow {
+    @apply font-body text-sm font-semibold uppercase tracking-[0.16em];
+  }
+  .btn-ember {
+    @apply inline-flex items-center gap-2.5 bg-ember text-wine font-body font-bold text-lg px-6 py-3.5 rounded-sm hover:bg-ember-deep;
+  }
+  .link-ember {
+    @apply underline underline-offset-4 decoration-2 decoration-ember hover:decoration-current;
+  }
+  .aanlever {
+    @apply border-2 border-dashed rounded-sm p-5 sm:p-6 font-display text-lg;
+  }
+  /* Menukaartregel: gerecht links, prijs rechts, stippellijn ertussen. */
+  .kaartregel {
+    @apply flex items-baseline gap-3 py-2;
+  }
+  .kaartregel .stippel {
+    @apply flex-1 border-b border-dotted border-cocoa/40 translate-y-[-0.3em];
+  }
+}

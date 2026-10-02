@@ -13,3 +13,4 @@
 | Autorijschool J. van Noort | Ridderkerk | [jarinijhoff.github.io/nextup/autorijschool-van-noort](https://jarinijhoff.github.io/nextup/autorijschool-van-noort/) | 2026-10-02 |
 | Kapsalon Rasho | Made | [jarinijhoff.github.io/nextup/kapsalon-rasho](https://jarinijhoff.github.io/nextup/kapsalon-rasho/) | 2026-10-02 |
 | MB hoveniersbedrijf | Waalwijk | [jarinijhoff.github.io/nextup/mb-hoveniersbedrijf](https://jarinijhoff.github.io/nextup/mb-hoveniersbedrijf/) | 2026-10-02 |
+| De Stadskamer | Gorinchem | [jarinijhoff.github.io/nextup/de-stadskamer-gorkum](https://jarinijhoff.github.io/nextup/de-stadskamer-gorkum/) | 2026-10-02 |
