@@ -3,3 +3,4 @@
 | Bedrijf | Plaats | Link | Datum |
 |---|---|---|---|
 | Kleijn Auto's | Zuid-Beijerland | [jarinijhoff.github.io/nextup/kleijn-autos](https://jarinijhoff.github.io/nextup/kleijn-autos/) | 2026-10-01 |
+| Barbershop Flakkee | Middelharnis | [jarinijhoff.github.io/nextup/barbershop-flakkee](https://jarinijhoff.github.io/nextup/barbershop-flakkee/) | 2026-10-02 |

@@ -1,0 +1,195 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Placeholder from '../components/Placeholder.astro';
+import gevel from '../assets/gevel.jpg';
+
+// Alle feiten hieronder komen van het Google-bedrijfsprofiel van Barbershop Flakkee
+// (adres, 06, openingstijden, score) en hun eigen Facebook- en Instagram-posts
+// (wat ze doen). Niets verzonnen; prijzen en eigen verhaal zijn nog niet openbaar.
+const tel = '06 12129532';
+const telHref = 'tel:+31612129532';
+const waHref = 'https://wa.me/31612129532';
+const route = 'https://www.google.com/maps/dir/?api=1&destination=Westdijk+21,+3241+GT+Middelharnis';
+
+// Openingstijden volgens het Google-bedrijfsprofiel, 2 oktober 2026.
+const tijden = [
+  ['Maandag', '12:00 tot 17:00'],
+  ['Dinsdag', '09:00 tot 18:00'],
+  ['Woensdag', '09:00 tot 18:00'],
+  ['Donderdag', '09:00 tot 18:00'],
+  ['Vrijdag', '09:00 tot 20:00'],
+  ['Zaterdag', '09:00 tot 18:00'],
+  ['Zondag', 'Gesloten'],
+];
+
+// Wat ze doen, in de woorden van hun eigen posts en reviews. Prijzen publiceren ze
+// niet, dus die komen van de zaak zelf.
+const diensten = [
+  { kop: 'Knippen', tekst: 'Fresh fade of klassieke coupe, bij ons draait het om jou.' },
+  { kop: 'Baard', tekst: 'Trimmen, in model brengen of strak scheren.' },
+  { kop: 'Haar en baard', tekst: 'De complete make-over: knippen en baard in een keer.' },
+  { kop: 'Jongens en kinderen', tekst: 'Ook de jongste klanten gaan strak geknipt de deur uit.' },
+];
+---
+<Layout
+  title="Barbershop Flakkee, Middelharnis: knippen en baard, met of zonder afspraak"
+  description="Barbier aan de Westdijk in Middelharnis. Knippen, fades en baard voor mannen en jongens. Loop binnen of app 06 12129532 voor een afspraak."
+  bedrijf="Barbershop Flakkee"
+  themeColor="#141210"
+  balkClass="bg-brass text-ink"
+>
+  <div id="top" class="relative bg-ink text-bone">
+    <Header tel={tel} telHref={telHref} />
+
+    <!-- Hero: eigen foto van de gevel beeldvullend, donker verloop aan de tekstkant,
+         kop groot links onderin. De header ligt transparant over de foto. -->
+    <section class="hero relative min-h-[80svh] lg:min-h-[100svh] flex items-end overflow-hidden">
+      <Picture
+        src={gevel}
+        formats={['avif', 'webp']}
+        widths={[640, 960, 1440, 2000]}
+        sizes="100vw"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        pictureAttributes={{ class: 'absolute inset-0' }}
+        class="hero-foto h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 via-40% to-ink/20" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/50 via-50% to-ink/10 lg:from-ink/60 lg:via-ink/15" aria-hidden="true"></div>
+      <div class="hero-tekst relative mx-auto w-full max-w-6xl px-5 sm:px-8 pb-12 sm:pb-16 pt-40 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-end">
+        <div class="lg:col-span-8">
+          <p class="eyebrow text-brass-light mb-3">Barbier aan de Westdijk, Middelharnis</p>
+          <h1 class="text-[clamp(3rem,15.5vw,4.5rem)] sm:text-6xl lg:text-[5rem] xl:text-[5.75rem] leading-[0.9]">
+            <span class="lg:whitespace-nowrap">Strak geknipt.</span><br /><span class="lg:whitespace-nowrap">Ook zonder afspraak.</span>
+          </h1>
+        </div>
+        <div class="lg:col-span-4 lg:pb-2">
+          <p class="mt-6 lg:mt-0 max-w-lg text-lg text-bone/90">
+            Knippen, fades en baard voor mannen en jongens. Loop binnen, of app even als je zeker wilt zijn van je plek.
+          </p>
+          <div class="mt-8 lg:mt-6 flex flex-wrap items-center gap-x-5 gap-y-4">
+            <a href={waHref} class="btn-brass">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 0 1 12 4Zm-3.3 4.2c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6Z"/></svg>
+              App voor een afspraak
+            </a>
+            <a href={telHref} class="font-display text-xl tracking-wide link-under">Of bel {tel}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main>
+    <!-- Knippen: lijst met lijnen, geen kaartjes. Prijzen komen van de zaak. -->
+    <section id="knippen" class="bg-bone">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24 grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <p class="eyebrow mb-3">Wat we doen</p>
+          <h2 class="text-4xl sm:text-5xl">Haar en baard.</h2>
+          <p class="mt-5 text-wood max-w-sm">Voor mannen en jongens. Je kunt vaak direct terecht; is het druk, dan maken we even een afspraak.</p>
+        </div>
+        <div class="lg:col-span-8">
+          <ul class="divide-y divide-bone-deep border-y border-bone-deep">
+            {diensten.map((d) => (
+              <li class="grid sm:grid-cols-[1fr_1.6fr] gap-x-6 gap-y-1 py-5 sm:py-6 items-baseline">
+                <h3 class="text-2xl sm:text-3xl">{d.kop}</h3>
+                <p class="text-wood">{d.tekst}</p>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-6 border border-dashed border-wood/40 rounded-sm p-5 sm:p-6">
+            <p class="placeholder-label text-wood">Hier komen jullie prijzen en eventuele extra behandelingen, precies zoals jullie ze hanteren</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- De zaak: donker vlak, de barber zelf aan het woord zodra hij zijn verhaal aanlevert. -->
+    <section id="zaak" class="bg-ink text-bone">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24 grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-5">
+          <Placeholder label="Hier komt een foto van jullie in de zaak" class="aspect-[4/5] rounded-sm" />
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <p class="eyebrow text-brass mb-3">De zaak</p>
+          <h2 class="text-4xl sm:text-5xl">Een praatje, een koffie, en strak naar buiten.</h2>
+          <p class="mt-5 text-smoke text-lg max-w-xl">
+            Barbershop Flakkee zit aan de Westdijk, vlak bij de haven van Middelharnis. Op Google staan we op 4,9 met 93 reviews, en we reageren er zelf op.
+          </p>
+          <div class="mt-8 border border-dashed border-smoke/40 rounded-sm p-5 sm:p-6">
+            <p class="placeholder-label">Hier komt jullie eigen verhaal: wie er knipt, sinds wanneer, en waar jullie goed in zijn</p>
+          </div>
+          <div class="mt-4 border border-dashed border-smoke/40 rounded-sm p-5 sm:p-6">
+            <p class="placeholder-label">Hier komen twee of drie echte Google-reviews, na jullie akkoord</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Praktisch: adres, tijden, contact. Geen formulier: binnenlopen of appen gaat sneller. -->
+    <section id="praktisch" class="bg-bone">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24 grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <p class="eyebrow mb-3">Adres en tijden</p>
+          <h2 class="text-4xl sm:text-5xl">Loop binnen.</h2>
+          <address class="not-italic mt-6 text-lg text-wood">
+            Barbershop Flakkee<br />
+            Westdijk 21<br />
+            3241 GT Middelharnis
+          </address>
+          <a href={route} target="_blank" rel="noopener" class="mt-3 inline-block font-display text-xl tracking-wide text-ink link-under">Routebeschrijving</a>
+          <ul class="mt-8 space-y-3">
+            <li><a href={telHref} class="font-display text-3xl text-ink hover:text-brass-text">{tel}</a></li>
+            <li><a href={waHref} class="text-ink link-under">WhatsApp op hetzelfde nummer</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          <table class="w-full text-left border-t border-bone-deep">
+            <caption class="sr-only">Openingstijden</caption>
+            <tbody>
+              {tijden.map(([dag, uren]) => (
+                <tr class="border-b border-bone-deep">
+                  <th scope="row" class="py-3 pr-4 font-display text-xl tracking-wide text-ink w-40">{dag}</th>
+                  <td class:list={['py-3', uren === 'Gesloten' ? 'text-wood' : 'text-ink']}>{uren}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="mt-4 text-sm text-wood">Tijden volgens het Google-profiel.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink text-smoke">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8 py-10 grid gap-6 sm:grid-cols-2 sm:items-end">
+      <div>
+        <p class="font-display text-3xl text-bone">Barbershop <span class="text-brass">Flakkee</span></p>
+        <p class="text-sm mt-1">Westdijk 21, 3241 GT Middelharnis · <a href={telHref} class="underline underline-offset-2 hover:text-bone">{tel}</a></p>
+      </div>
+      <p id="privacy" class="text-xs sm:text-right">
+        <a href="#privacy" class="underline underline-offset-2 hover:text-bone">Privacy</a>: dit ontwerp plaatst geen cookies en verzamelt geen gegevens.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Mobiel: vaste balk onderaan, want daar zit de duim. -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-20 grid grid-cols-2 border-t border-ink">
+    <a href={telHref} class="bg-bone text-ink font-display text-xl tracking-wide py-3.5 text-center">Bel</a>
+    <a href={waHref} class="bg-brass text-ink font-display text-xl tracking-wide py-3.5 text-center">WhatsApp</a>
+  </div>
+  <div class="md:hidden h-14" aria-hidden="true"></div>
+</Layout>
+
+<style>
+  /* Uitsnede van de gevelfoto: op desktop het bord bovenin en de verlichte zaak
+     eronder; op een smal scherm de rechterhelft, zodat "FLAKKEE" heel in beeld blijft. */
+  /* Uitsnede van de gevelfoto. Desktop: foto onderaan uitgelijnd, zodat het naambord
+     boven de kop leesbaar blijft en de kop over de donkere pui valt. Smal scherm: de
+     rechterhelft met "FLAKKEE", donker gehouden achter de tekst. */
+  .hero-foto { object-position: 100% 50%; }
+  @media (min-width: 1024px) { .hero-foto { object-position: 50% 100%; } }
+</style>
