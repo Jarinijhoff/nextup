@@ -51,7 +51,7 @@ const tijden = [
     <Header waHref={waHref} />
 
     <!-- Hero: de gelagkamer zelf, beeldvullend; krijtletters links onderin. -->
-    <section class="relative min-h-[82svh] lg:min-h-[96svh] flex items-end overflow-hidden">
+    <section class="relative min-h-[96svh] lg:min-h-[96svh] flex items-end overflow-hidden">
       <Picture
         src={cafeBar}
         formats={['avif', 'webp']}
@@ -64,9 +64,9 @@ const tijden = [
         pictureAttributes={{ class: 'absolute inset-0' }}
         class="hero-foto h-full w-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-board via-board/80 via-60% to-board/45 lg:via-board/70 lg:via-45% lg:to-board/10" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-board via-board/85 via-55% to-board/10 lg:via-board/70 lg:via-45% lg:to-board/10" aria-hidden="true"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-board/90 via-board/55 via-45% to-transparent" aria-hidden="true"></div>
-      <div class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-board/80 to-transparent" aria-hidden="true"></div>
+      <div class="absolute inset-x-0 top-0 h-36 lg:h-44 bg-gradient-to-b from-board/80 to-transparent" aria-hidden="true"></div>
       <div class="hero-tekst relative mx-auto w-full max-w-6xl px-5 sm:px-8 pb-12 sm:pb-16 pt-44">
         <p class="w-fit font-body font-bold text-sm uppercase tracking-[0.16em] text-chalk mb-4">Aan de Kaai in Oude-Tonge</p>
         <h1 class="text-[clamp(2.7rem,12.5vw,4.3rem)] leading-[1] sm:text-5xl lg:text-6xl">
@@ -82,7 +82,7 @@ const tijden = [
           </a>
           <a href="#bord" class="text-lg link-under decoration-brick-light">Wat staat er op het bord?</a>
         </div>
-        <p class="mt-8 w-fit text-sm text-chalk/85">Maandag gesloten · vrijdag en zaterdag open tot 02:00</p>
+        <p class="hidden sm:block mt-8 w-fit text-sm text-chalk/85">Maandag gesloten · vrijdag en zaterdag open tot 02:00</p>
       </div>
     </section>
   </div>
