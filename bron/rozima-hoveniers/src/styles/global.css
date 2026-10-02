@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* Fonts zelf gehost, alleen latin. Fraunces voor koppen: een zware serif met zachte
+   rondingen, past bij tuinen en vakmanschap zonder schreeuwerig te worden. Karla voor
+   lopende tekst: rustig en goed leesbaar op een telefoon. */
+@import "@fontsource-variable/fraunces/wght.css";
+@import "@fontsource-variable/karla/wght.css";
+
+@theme {
+  /* Standaardpalet van Tailwind weg: alleen eigen tokens bestaan. */
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Diep tuingroen in plaats van het felle groen van de oude site; roest (cortenstaal
+     uit hun eigen werk) is het enige accent. */
+  --color-ink: #16261b;          /* donkergroen bijna zwart: koppen, donkere vlakken */
+  --color-moss: #24402c;         /* tweede donkere tint voor vlakken */
+  --color-fern: #4d5a4f;         /* secundaire tekst op licht, 6,5:1 */
+  --color-sage: #b9c4b5;         /* gedempte tekst op donker, 8,8:1 */
+  --color-linen: #f3f2ec;        /* achtergrond */
+  --color-linen-deep: #e2e1d8;   /* lijnen en vlakken op linen */
+  --color-rust: #a3461c;         /* het ene accent: knoppen en kleine markeringen, 5,4:1 op linen */
+  --color-rust-deep: #86391a;    /* hover van de roestknop */
+  --color-rust-light: #e9a37a;   /* roest als tekst op donkergroen, 7,5:1 */
+  --color-white: #ffffff;
+
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-body: "Karla Variable", "Helvetica Neue", Arial, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.4rem;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 1.8rem;
+  --text-2xl--line-height: 1.15;
+  --text-3xl: 2.4rem;
+  --text-3xl--line-height: 1.06;
+  --text-4xl: 3.2rem;
+  --text-4xl--line-height: 1.02;
+  --text-5xl: 4.4rem;
+  --text-5xl--line-height: 0.98;
+  --text-6xl: 5.6rem;
+  --text-6xl--line-height: 0.95;
+
+  --radius-sm: 2px;
+  --radius-md: 6px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    @apply bg-linen text-ink font-body text-base antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-variation-settings: "SOFT" 60;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-rust);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-rust);
+    color: var(--color-white);
+  }
+}
+
+@layer components {
+  /* Vlak voor materiaal dat nog van Rozima moet komen: rustig, in huisstijl,
+     herkenbaar als onderdeel van een schets. Geen stock, geen AI-beeld. */
+  .placeholder {
+    @apply relative overflow-hidden bg-moss text-sage;
+    background-image:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgb(255 255 255 / 0.04) 14px 15px);
+  }
+  .placeholder-label {
+    @apply font-body font-bold text-sm tracking-[0.02em] text-sage;
+  }
+  .eyebrow {
+    @apply font-body font-bold text-sm uppercase tracking-[0.18em] text-rust;
+  }
+  .btn-rust {
+    @apply inline-flex items-center gap-2.5 bg-rust text-white font-body font-bold text-base sm:text-lg px-5 sm:px-6 py-3.5 rounded-md hover:bg-rust-deep;
+  }
+  .link-under {
+    @apply font-bold underline underline-offset-4 decoration-2 decoration-rust hover:decoration-current;
+  }
+}

@@ -1,0 +1,28 @@
+---
+// Header ligt transparant over de tuinfoto. Woordmerk in de koppenletter: er is geen
+// los logobestand, het boom-icoon van de bussen komt bij het afmaken.
+const items = [
+  ['#diensten', 'Diensten'],
+  ['#werkwijze', 'Werkwijze'],
+  ['#werk', 'Projecten'],
+  ['#contact', 'Contact'],
+];
+const { waHref } = Astro.props;
+---
+<header class="absolute top-0 inset-x-0 z-20 text-linen">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8 flex items-center justify-between gap-4 h-20 sm:h-24">
+    <a href="#top" class="font-display text-2xl sm:text-3xl leading-none" style="font-weight:800;letter-spacing:-0.03em" >
+      Rozima <span class="block font-body text-xs font-bold uppercase tracking-[0.3em] mt-1">Hoveniers</span>
+    </a>
+    <nav aria-label="Hoofdnavigatie" class="hidden md:block">
+      <ul class="flex items-center gap-7 font-bold">
+        {items.map(([href, label]) => (
+          <li><a href={href} class="hover:text-rust-light">{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a href={waHref} class="hidden sm:inline-flex items-center gap-2 border-2 border-linen/70 font-bold px-4 py-2 rounded-md hover:border-rust-light hover:text-rust-light">
+      Vrijblijvend langskomen
+    </a>
+  </div>
+</header>

@@ -7,3 +7,4 @@
 | Petrol Heads Garage | Rijen | [jarinijhoff.github.io/nextup/petrol-heads-garage](https://jarinijhoff.github.io/nextup/petrol-heads-garage/) | 2026-10-02 |
 | Kwantung Chinese Cuisine | Hoogerheide | [jarinijhoff.github.io/nextup/kwantung-hoogerheide](https://jarinijhoff.github.io/nextup/kwantung-hoogerheide/) | 2026-10-02 |
 | Schildersbedrijf De Maas | Barendrecht | [jarinijhoff.github.io/nextup/schildersbedrijf-de-maas](https://jarinijhoff.github.io/nextup/schildersbedrijf-de-maas/) | 2026-10-02 |
+| Rozima Hoveniers | Middelharnis | [jarinijhoff.github.io/nextup/rozima-hoveniers](https://jarinijhoff.github.io/nextup/rozima-hoveniers/) | 2026-10-02 |
