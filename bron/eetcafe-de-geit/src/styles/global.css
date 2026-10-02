@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
-/* Fonts zelf gehost, alleen latin. Bricolage Grotesque voor koppen: zwaar en een
-   beetje eigenwijs, past bij een dorpscafé met een geit in de naam. Instrument Sans
-   voor lopende tekst en de kaart: rustig en goed leesbaar. */
-@import "@fontsource-variable/bricolage-grotesque/wght.css";
+/* Fonts zelf gehost, alleen latin. Kalam voor koppen: handgeschreven krijtletters,
+   zoals op de borden die de Geit zelf in het café en op Instagram gebruikt. Bewust
+   geen zware schreefloze kop: de sfeer van een bruin café vraagt hier om de hand.
+   Instrument Sans voor lopende tekst, rustig en goed leesbaar. */
+@import "@fontsource/kalam/latin-700.css";
 @import "@fontsource-variable/instrument-sans/wght.css";
 
 @theme {
@@ -13,19 +14,23 @@
   --radius-*: initial;
   --shadow-*: initial;
 
-  /* Warm bruin café: crème als papier, donker hout, en baksteenrood als enige accent. */
-  --color-ink: #2b1d16;          /* donkerbruin: koppen en donkere vlakken */
-  --color-wood: #3d2a20;         /* tweede donkere tint voor vlakken */
+  /* Bruin café: crème als papier, donker hout, het zwart van een krijtbord en
+     baksteenrood als enige accent. Het groen van de muren komt uit de foto's. */
+  --color-ink: #2b1d16;          /* donkerbruin: tekst en donkere vlakken */
+  --color-wood: #5a3d2b;         /* houten lijst om het krijtbord */
+  --color-board: #1e211f;        /* krijtbord */
+  --color-chalk: #f1eee6;        /* krijtwit op het bord, 15:1 */
+  --color-chalk-soft: #c9c5ba;   /* gedempt krijt, 10:1 op het bord */
   --color-earth: #6b5446;        /* secundaire tekst op crème, 6,2:1 */
-  --color-oat: #cdb9a5;          /* gedempte tekst op donker, 8,6:1 */
+  --color-oat: #cdb9a5;          /* gedempte tekst op donkerbruin, 8,6:1 */
   --color-cream: #f7f0e3;        /* achtergrond */
   --color-cream-deep: #e9dcc6;   /* lijnen en vlakken op crème */
   --color-brick: #a8322a;        /* het ene accent: knoppen en markeringen, 5,9:1 op crème */
-  --color-brick-deep: #8a271f;   /* hover van de rode knop */
-  --color-brick-light: #f0a08f;  /* rood als tekst op donker, 7,9:1 */
+  --color-brick-deep: #8a271f;
+  --color-brick-light: #f7b9aa;  /* rood als tekst op donker, ook op de foto ruim boven 4,5:1 */
   --color-white: #ffffff;
 
-  --font-display: "Bricolage Grotesque Variable", "Arial Black", sans-serif;
+  --font-display: "Kalam", "Comic Neue", cursive;
   --font-body: "Instrument Sans Variable", "Helvetica Neue", Arial, sans-serif;
 
   --text-xs: 0.8125rem;
@@ -36,27 +41,27 @@
   --text-base--line-height: 1.6;
   --text-lg: 1.1875rem;
   --text-lg--line-height: 1.55;
-  --text-xl: 1.375rem;
-  --text-xl--line-height: 1.25;
-  --text-2xl: 1.75rem;
+  --text-xl: 1.45rem;
+  --text-xl--line-height: 1.2;
+  --text-2xl: 1.85rem;
   --text-2xl--line-height: 1.12;
-  --text-3xl: 2.3rem;
+  --text-3xl: 2.5rem;
   --text-3xl--line-height: 1.05;
-  --text-4xl: 3rem;
-  --text-4xl--line-height: 1;
-  --text-5xl: 4.1rem;
-  --text-5xl--line-height: 0.96;
-  --text-6xl: 5.4rem;
-  --text-6xl--line-height: 0.93;
+  --text-4xl: 3.2rem;
+  --text-4xl--line-height: 1.02;
+  --text-5xl: 4.3rem;
+  --text-5xl--line-height: 0.98;
+  --text-6xl: 5.6rem;
+  --text-6xl--line-height: 0.95;
 
   --radius-sm: 4px;
-  --radius-md: 10px;
+  --radius-md: 8px;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 1rem;
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -70,8 +75,8 @@
   }
   h1, h2, h3 {
     @apply font-display;
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
   :focus-visible {
     outline: 3px solid var(--color-brick);
@@ -84,10 +89,22 @@
 }
 
 @layer components {
-  /* Vlak voor materiaal dat nog van het café moet komen: rustig, in huisstijl,
-     herkenbaar als onderdeel van een schets. Geen stock, geen AI-beeld. */
+  /* Het krijtbord: zwart met een vage veeg krijtstof en een houten lijst, zoals de
+     borden in het café. Bewust geen glans of schaduw van buiten. */
+  .krijtbord {
+    @apply bg-board text-chalk rounded-sm;
+    border: 14px solid var(--color-wood);
+    background-image:
+      radial-gradient(ellipse 60% 40% at 18% 22%, rgb(255 255 255 / 0.06), transparent 70%),
+      radial-gradient(ellipse 50% 35% at 82% 78%, rgb(255 255 255 / 0.05), transparent 70%),
+      radial-gradient(ellipse 30% 20% at 60% 40%, rgb(255 255 255 / 0.03), transparent 70%);
+  }
+  .krijt-lijn {
+    @apply border-chalk-soft/30;
+    border-style: dashed;
+  }
   .placeholder {
-    @apply relative overflow-hidden bg-wood text-oat;
+    @apply relative overflow-hidden bg-ink text-oat;
     background-image:
       repeating-linear-gradient(135deg, transparent 0 14px, rgb(255 255 255 / 0.04) 14px 15px);
   }
