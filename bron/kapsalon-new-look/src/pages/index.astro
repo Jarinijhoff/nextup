@@ -1,9 +1,10 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Placeholder from '../components/Placeholder.astro';
 import interieur from '../assets/interieur.jpg';
+import logo from '../assets/logo.png';
 
 // Alle feiten hieronder komen van het Google-bedrijfsprofiel (adres, 06,
 // openingstijden, poster "alleen op afspraak"), de Instagram-bio
@@ -13,7 +14,6 @@ const tel = '06 10925056';
 const telHref = 'tel:+31610925056';
 const waHref = 'https://wa.me/31610925056?text=' + encodeURIComponent('Hoi, ik wil graag een afspraak maken. Mijn naam is ... en ik kan op ...');
 const instagram = 'https://www.instagram.com/kapsalon_new_look/';
-const tiktok = 'https://www.tiktok.com/@kapsalonnewlook3';
 const route = 'https://www.google.com/maps/dir/?api=1&destination=Irisstraat+6,+2981+BN+Ridderkerk';
 
 // Openingstijden volgens het Google-profiel (door het bedrijf bijgewerkt, zomer 2026).
@@ -43,35 +43,45 @@ const groepen = [
   fonts={['bricolage-grotesque-latin-wght-normal.woff2', 'manrope-latin-wght-normal.woff2']}
 >
   <div id="top"></div>
-  <Header />
+
+  <!-- Hero: hun eigen interieurfoto (Google-profiel, aug 2026) beeldvullend met een
+       donkere laag, tekst linksonder. De header ligt transparant over de foto. -->
+  <section class="relative min-h-[78svh] lg:min-h-[92vh] flex flex-col text-white overflow-hidden bg-ink">
+    <Picture
+      src={interieur}
+      alt="Binnen bij Kapsalon New Look: ronde verlichte spiegels, zwarte wanden en een gouden lamp"
+      widths={[640, 1024, 1600, 2324]}
+      sizes="100vw"
+      formats={['avif', 'webp']}
+      loading="eager"
+      fetchpriority="high"
+      pictureAttributes={{ class: 'absolute inset-0' }}
+      class="h-full w-full object-cover"
+      style="object-position: 68% 50%"
+    />
+    <div class="absolute inset-0" aria-hidden="true" style="background:
+      linear-gradient(to top, rgb(10 10 10 / 0.96) 0%, rgb(10 10 10 / 0.78) 40%, rgb(10 10 10 / 0.35) 75%, rgb(10 10 10 / 0.45) 100%),
+      linear-gradient(to right, rgb(10 10 10 / 0.7) 0%, rgb(10 10 10 / 0.1) 70%);"></div>
+    <Header />
+    <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 mt-auto pt-40 pb-14 sm:pb-20 lg:pb-24">
+      <p class="eyebrow text-gold mb-4">Kapsalon in Ridderkerk, sinds 2018</p>
+      <h1 class="text-3xl min-[360px]:text-4xl sm:text-5xl lg:text-6xl max-w-4xl [overflow-wrap:anywhere]">
+        Dames, heren en kinderen. Alleen op afspraak.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg text-mist">
+        Geen inloop, geen wachten. Je appt een dag en tijd, wij bevestigen, en de stoel is van jou.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a href={waHref} class="knop text-lg px-6 py-3.5">App voor een afspraak</a>
+        <a href={telHref} class="font-display font-bold text-lg link-lijn">Of bel {tel}</a>
+      </div>
+      <p class="mt-10 text-sm text-mist">
+        <span class="font-display font-extrabold text-white text-xl align-middle">4,9</span> op Google, uit 69 reviews
+      </p>
+    </div>
+  </section>
 
   <main>
-    <!-- Hero: donker vlak, tekst links, rechts het vlak voor een foto van de zaak.
-         Geen beeldvullende foto: de enige eigen foto is te rommelig voor een hero. -->
-    <section class="bg-ink text-white">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-12 sm:pb-20 grid gap-10 lg:grid-cols-12 lg:items-end">
-        <div class="lg:col-span-7">
-          <p class="eyebrow text-gold mb-4">Kapsalon in Ridderkerk, sinds 2018</p>
-          <h1 class="text-3xl min-[360px]:text-4xl sm:text-5xl lg:text-6xl [overflow-wrap:anywhere]">
-            Dames, heren en kinderen. Alleen op afspraak.
-          </h1>
-          <p class="mt-6 max-w-xl text-lg text-mist">
-            Geen inloop, geen wachten. Je appt een dag en tijd, wij bevestigen, en de stoel is van jou.
-          </p>
-          <div class="mt-8 flex flex-wrap items-center gap-4">
-            <a href={waHref} class="knop text-lg px-6 py-3.5">App voor een afspraak</a>
-            <a href={telHref} class="font-display font-bold text-lg link-lijn">Of bel {tel}</a>
-          </div>
-          <p class="mt-10 text-sm text-mist">
-            <span class="font-display font-extrabold text-white text-xl align-middle">4,9</span> op Google, uit 69 reviews
-          </p>
-        </div>
-        <div class="lg:col-span-5">
-          <Placeholder label="Hier komt een foto van jullie zaak aan de Irisstraat" class="aspect-[4/3] lg:aspect-[4/5] rounded-md border border-white/10" />
-        </div>
-      </div>
-    </section>
-
     <!-- Behandelingen: prijslijst-opbouw met lijnen. Prijzen komen van de zaak. -->
     <section id="behandelingen" class="border-b border-paper-deep">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20 grid gap-10 lg:grid-cols-12">
@@ -125,17 +135,16 @@ const groepen = [
     <section id="zaak" class="border-b border-paper-deep">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20 grid gap-10 lg:grid-cols-12 lg:items-center">
         <div class="lg:col-span-7">
-          <Image src={interieur} alt="Binnen bij Kapsalon New Look: ronde verlichte spiegels, zwarte wanden en een gouden lamp" widths={[480, 800, 1200]} sizes="(min-width: 1024px) 640px, 100vw" quality={72} class="w-full aspect-[3/2] object-cover rounded-md" loading="lazy" style="object-position: 70% 50%" />
+          <Placeholder label="Hier komt een foto van de gevel aan de Irisstraat, of van een kapsel" class="aspect-[3/2] rounded-md" />
         </div>
         <div class="lg:col-span-5">
           <p class="eyebrow mb-3">De zaak</p>
           <h2 class="text-3xl sm:text-4xl">Klein, donker en strak.</h2>
           <p class="mt-5 text-ink-soft text-lg">
-            Kapsalon New Look zit aan de Irisstraat 6 in Ridderkerk. Een stoel, een goed gesprek en een kapsel waar je mee thuis durft te komen. Nieuwe knipsels staan op Instagram en TikTok.
+            Kapsalon New Look zit aan de Irisstraat 6 in Ridderkerk. Een stoel, een goed gesprek en een kapsel waar je mee thuis durft te komen. Nieuwe knipsels staan op Instagram.
           </p>
           <div class="mt-6 flex flex-wrap gap-4 font-body font-semibold">
             <a href={instagram} target="_blank" rel="noopener" class="link-lijn">Instagram</a>
-            <a href={tiktok} target="_blank" rel="noopener" class="link-lijn">TikTok</a>
           </div>
           <div class="mt-8 rounded-md border border-dashed border-ink/30 p-5 sm:p-6">
             <p class="placeholder-label text-ink-soft">Hier komt jullie verhaal: wie er knipt, sinds wanneer en waar jullie goed in zijn</p>
@@ -185,7 +194,7 @@ const groepen = [
   <footer class="bg-ink-deep text-mist">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10 grid gap-6 sm:grid-cols-2 sm:items-end">
       <div>
-        <p class="font-display font-extrabold text-2xl text-white">Kapsalon New Look</p>
+        <Image src={logo} alt="Kapsalon New Look, dames en heren" width={360} densities={[1, 2]} class="h-10 w-auto" loading="lazy" />
         <p class="text-sm mt-1">Irisstraat 6, 2981 BN Ridderkerk · <a href={telHref} class="underline underline-offset-2 hover:text-white">{tel}</a></p>
       </div>
       <p id="privacy" class="text-xs sm:text-right">

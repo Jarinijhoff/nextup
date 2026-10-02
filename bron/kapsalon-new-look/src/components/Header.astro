@@ -1,5 +1,8 @@
 ---
-// Sticky donkere header met WhatsApp-knop: afspraak maken is de enige actie die telt.
+// Header ligt transparant over de herofoto; het echte logo (Instagram, 2023)
+// staat links, de WhatsApp-knop rechts: afspraak maken is de enige actie die telt.
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
 const items = [
   ['#behandelingen', 'Behandelingen'],
   ['#afspraak', 'Afspraak'],
@@ -7,10 +10,10 @@ const items = [
   ['#praktisch', 'Adres en tijden'],
 ];
 ---
-<header class="sticky top-0 z-20 bg-ink text-white border-b border-white/10">
+<header class="absolute inset-x-0 top-0 z-20 text-white">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between gap-4 h-16 sm:h-20">
-    <a href="#top" class="font-display font-extrabold text-base sm:text-xl tracking-tight leading-none whitespace-nowrap">
-      New Look <span class="hidden md:inline font-body font-medium text-sm tracking-[0.12em] uppercase text-gold ml-1">Dames &amp; heren</span>
+    <a href="#top" class="flex items-center" aria-label="Kapsalon New Look, naar boven">
+      <Image src={logo} alt="Kapsalon New Look, dames en heren" width={440} densities={[1, 2]} class="h-9 sm:h-12 w-auto" loading="eager" />
     </a>
     <nav aria-label="Hoofdnavigatie" class="hidden md:block">
       <ul class="flex items-center gap-6 font-body font-semibold text-sm whitespace-nowrap">
