@@ -1,0 +1,204 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Placeholder from '../components/Placeholder.astro';
+import team from '../assets/team.jpg';
+
+// Bronnen: het Google-profiel (adres, 06, openingstijden, score, teamfoto geplaatst door
+// het café zelf), de Facebook-pagina (slogan, activiteiten) en de papieren kaart op een
+// foto in het Google-profiel (gerechten). Prijzen laten we weg tot het café ze bevestigt.
+const tel = '06 10890153';
+const telHref = 'tel:+31610890153';
+const waHref = 'https://wa.me/31610890153';
+const mail = 'eetcafedegeit@icloud.com';
+const facebook = 'https://www.facebook.com/eetcafedegeit/';
+const route = 'https://www.google.com/maps/dir/?api=1&destination=Kaai+1,+3255+AG+Oude-Tonge';
+
+// Een greep uit de kaart, in de woorden van de kaart zelf.
+const kaart = [
+  { naam: 'Spareribs', tekst: 'Zeeuws scharrelvarken, gewoon lekker of pittig met sambal van Kadhir.' },
+  { naam: 'Hamburger zoals die bedoeld is', tekst: 'Met onder andere bacon en kaas, burger van Beestenboel van Verweij.' },
+  { naam: 'Bouw je eigen burger', tekst: 'Kies je broodje, saus, burger en extra’s op het briefje.' },
+  { naam: 'Schnitzel', tekst: 'Varken of kip, met peper- of champignonsaus of gebakken zooi.' },
+  { naam: 'Beladen patatje', tekst: 'Met stoofvlees, vega stoof of kipshoarma.' },
+  { naam: 'Rode bieten taart', tekst: 'Met verse geitenkaas. Hoe kan het ook anders, bij de Geit.' },
+];
+
+// Openingstijden volgens het Google-bedrijfsprofiel, 2 oktober 2026.
+const tijden = [
+  ['Maandag', 'Gesloten'],
+  ['Dinsdag', '12:00 tot 22:00'],
+  ['Woensdag', '12:00 tot 22:00'],
+  ['Donderdag', '12:00 tot 22:00'],
+  ['Vrijdag', '12:00 tot 02:00'],
+  ['Zaterdag', '11:00 tot 02:00'],
+  ['Zondag', '11:00 tot 22:00'],
+];
+---
+<Layout
+  title="Eetcafé de Geit, Oude-Tonge: de kaart, openingstijden en reserveren"
+  description="Eetcafé aan de Kaai in Oude-Tonge. Spareribs, burgers en schnitzels, speciaalbieren, darts en live muziek. Reserveren via WhatsApp op 06 10890153."
+  bedrijf="Eetcafé de Geit"
+  themeColor="#2b1d16"
+  balkClass="bg-ink text-cream"
+>
+  <div id="top"></div>
+  <Header waHref={waHref} />
+
+  <main>
+    <!-- Hero: hun eigen slogan groot, links; rechts het vlak voor een sfeerfoto van het
+         café, want een eigen foto van het interieur is (nog) niet bevestigd. -->
+    <section class="relative overflow-hidden">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 pt-10 sm:pt-16 pb-14 sm:pb-20 grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <p class="eyebrow mb-4">Eetcafé aan de Kaai, Oude-Tonge</p>
+          <h1 class="text-[clamp(2.4rem,11.5vw,4.1rem)] leading-[0.98] sm:text-5xl lg:text-[4.6rem] xl:text-[5rem]">
+            <span class="whitespace-nowrap">Lekker eten.</span><br /><span class="whitespace-nowrap">Lekker drinken.</span><br /><span class="whitespace-nowrap text-brick">Lekker gezellig.</span>
+          </h1>
+          <p class="mt-6 max-w-xl text-lg text-earth">
+            Spareribs, burgers en schnitzels, een goed glas bier, darts aan de muur en elke tweede zondagmiddag van de maand live muziek. Lekker lokaal, aan de haven van Oude-Tonge.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a href={waHref} class="btn-brick">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 0 1 12 4Zm-3.3 4.2c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6Z"/></svg>
+              Reserveer via WhatsApp
+            </a>
+            <a href="#kaart" class="text-lg link-under">Bekijk de kaart</a>
+          </div>
+          <p class="mt-8 text-sm text-earth">Maandag gesloten · vrijdag en zaterdag open tot 02:00 · <a href="#praktisch" class="underline underline-offset-2 hover:text-brick">alle tijden</a></p>
+        </div>
+        <div class="lg:col-span-5">
+          <Placeholder label="Hier komt een foto van jullie café aan de Kaai" class="aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5] rounded-md" />
+        </div>
+      </div>
+    </section>
+
+    <!-- De kaart: precies wat gasten nu missen. Als HTML, niet als PDF: leesbaar op de
+         telefoon en vindbaar in Google. Prijzen volgen na bevestiging. -->
+    <section id="kaart" class="bg-ink text-cream">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24 grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <p class="font-body font-bold text-sm uppercase tracking-[0.16em] text-brick-light mb-3">De kaart</p>
+          <h2 class="text-3xl sm:text-4xl">Gewoon lekker eten.</h2>
+          <p class="mt-5 text-oat text-lg">Hoofdgerechten worden zonder bijgerechten geserveerd. Patat en snacks kun je ook meenemen.</p>
+        </div>
+        <div class="lg:col-span-8">
+          <ul class="grid gap-x-10 sm:grid-cols-2">
+            {kaart.map((g) => (
+              <li class="border-t border-oat/30 py-5">
+                <h3 class="text-xl sm:text-2xl">{g.naam}</h3>
+                <p class="mt-1.5 text-oat">{g.tekst}</p>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-6 border-2 border-dashed border-oat/40 rounded-md p-5 sm:p-6">
+            <p class="placeholder-label">Hier komt jullie volledige kaart met de actuele prijzen, ook de chef special en de vega en vegan burgers</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- In het café: wat ze zelf op Facebook laten zien, als korte lijst met lijnen. -->
+    <section id="cafe">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24">
+        <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-7">
+            <p class="eyebrow mb-3">In het café</p>
+            <h2 class="text-3xl sm:text-4xl">Er is altijd wat te doen.</h2>
+          </div>
+          <a href={facebook} target="_blank" rel="noopener" class="lg:col-span-5 lg:text-right link-under">Volg de agenda op Facebook</a>
+        </div>
+        <dl class="mt-10 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="border-t-2 border-ink pt-5 pb-6">
+            <dt class="font-display text-xl" style="font-weight:800">Live muziek</dt>
+            <dd class="mt-1.5 text-earth">Elke tweede zondagmiddag van de maand.</dd>
+          </div>
+          <div class="border-t-2 border-ink pt-5 pb-6">
+            <dt class="font-display text-xl" style="font-weight:800">Voetbal kijken</dt>
+            <dd class="mt-1.5 text-earth">Speelt Nederland, dan staat het aan.</dd>
+          </div>
+          <div class="border-t-2 border-ink pt-5 pb-6">
+            <dt class="font-display text-xl" style="font-weight:800">Darts en kaarten</dt>
+            <dd class="mt-1.5 text-earth">Een potje darten of klaverjassen met de vaste gasten.</dd>
+          </div>
+          <div class="border-t-2 border-ink pt-5 pb-6">
+            <dt class="font-display text-xl" style="font-weight:800">Avonden met een thema</dt>
+            <dd class="mt-1.5 text-earth">Pannenkoeken, barbecue of de jukebox: kijk in de agenda.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Over ons: de teamfoto die het café zelf op Google plaatste. -->
+    <section id="over" class="bg-cream-deep/60">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24 grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <Image src={team} alt="Het team van Eetcafé de Geit proost achter de bar" widths={[400, 650, 960, 1280]} quality={65} sizes="(min-width: 1024px) 540px, 100vw" class="w-full aspect-[4/3] object-cover rounded-md" />
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8">
+          <p class="eyebrow mb-3">Over ons</p>
+          <h2 class="text-3xl sm:text-4xl">Een echt dorpscafé, aan de haven.</h2>
+          <p class="mt-5 text-earth text-lg">Lekker eten, lekker drinken, lekker gezellig, lekker lokaal. Op Google geven 51 gasten de Geit gemiddeld een 4,6.</p>
+          <div class="mt-8 border-2 border-dashed border-earth/40 rounded-md p-5 sm:p-6">
+            <p class="placeholder-label text-earth">Hier komt jullie eigen verhaal: wie jullie zijn en sinds wanneer de Geit van jullie is</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open en reserveren: tijden, adres en contact. Reserveren gaat via bellen of appen. -->
+    <section id="praktisch">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-24 grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <p class="eyebrow mb-3">Open en reserveren</p>
+          <h2 class="text-3xl sm:text-4xl">Een tafel? Stuur even een appje.</h2>
+          <p class="mt-5 text-earth text-lg">Reserveren gaat het snelst via WhatsApp of even bellen.</p>
+          <ul class="mt-6 space-y-3">
+            <li><a href={waHref} class="font-display text-3xl hover:text-brick" style="font-weight:800">{tel}</a></li>
+            <li><a href={`mailto:${mail}`} class="link-under break-all">{mail}</a></li>
+          </ul>
+          <address class="not-italic mt-8 text-lg text-earth">
+            Eetcafé de Geit<br />
+            Kaai 1<br />
+            3255 AG Oude-Tonge
+          </address>
+          <a href={route} target="_blank" rel="noopener" class="mt-3 inline-block link-under">Routebeschrijving</a>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <table class="w-full text-left border-t border-cream-deep">
+            <caption class="sr-only">Openingstijden</caption>
+            <tbody>
+              {tijden.map(([dag, uren]) => (
+                <tr class="border-b border-cream-deep">
+                  <th scope="row" class="py-3 pr-4 font-semibold w-36">{dag}</th>
+                  <td class:list={['py-3', uren === 'Gesloten' ? 'text-earth' : 'text-ink']}>{uren}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="mt-4 text-sm text-earth">Tijden volgens het Google-profiel.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink text-oat">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8 py-10 grid gap-6 sm:grid-cols-2 sm:items-end">
+      <div>
+        <p class="font-display text-2xl text-cream" style="font-weight:800;letter-spacing:-0.03em">Eetcafé <span class="text-brick-light">de Geit</span></p>
+        <p class="text-sm mt-1">Kaai 1, 3255 AG Oude-Tonge · <a href={telHref} class="underline underline-offset-2 hover:text-cream">{tel}</a></p>
+      </div>
+      <p id="privacy" class="text-xs sm:text-right">
+        <a href="#privacy" class="underline underline-offset-2 hover:text-cream">Privacy</a>: dit ontwerp plaatst geen cookies en verzamelt geen gegevens.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Mobiel: vaste balk onderaan, want daar zit de duim. -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-20 grid grid-cols-2 border-t border-ink">
+    <a href={telHref} class="bg-cream text-ink font-bold text-lg py-3.5 text-center">Bel</a>
+    <a href={waHref} class="bg-brick text-white font-bold text-lg py-3.5 text-center">Reserveer</a>
+  </div>
+  <div class="md:hidden h-14" aria-hidden="true"></div>
+</Layout>
