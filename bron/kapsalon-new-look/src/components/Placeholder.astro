@@ -1,0 +1,21 @@
+---
+// Vlak voor een foto die er nog niet is. Bewust een rustig vlak in de huisstijl,
+// geen stockfoto: dat maakt het generiek en verraadt een sjabloon.
+interface Props {
+  label: string;
+  class?: string;
+}
+const { label, class: extra = '' } = Astro.props;
+---
+<div class:list={['placeholder', extra]} role="img" aria-label={label}>
+  <div class="absolute inset-0 flex items-end p-5 sm:p-6">
+    <div class="flex items-center gap-3">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true" class="shrink-0">
+        <rect x="2.5" y="5.5" width="23" height="17" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="10" cy="12" r="2.25" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M4 21l6.5-6 4.5 4 3.5-3 6 5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      <span class="placeholder-label">{label}</span>
+    </div>
+  </div>
+</div>

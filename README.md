@@ -9,3 +9,4 @@
 | Schildersbedrijf De Maas | Barendrecht | [jarinijhoff.github.io/nextup/schildersbedrijf-de-maas](https://jarinijhoff.github.io/nextup/schildersbedrijf-de-maas/) | 2026-10-02 |
 | Rozima Hoveniers | Middelharnis | [jarinijhoff.github.io/nextup/rozima-hoveniers](https://jarinijhoff.github.io/nextup/rozima-hoveniers/) | 2026-10-02 |
 | Eetcafé de Geit | Oude-Tonge | [jarinijhoff.github.io/nextup/eetcafe-de-geit](https://jarinijhoff.github.io/nextup/eetcafe-de-geit/) | 2026-10-02 |
+| Kapsalon New Look | Ridderkerk | [jarinijhoff.github.io/nextup/kapsalon-new-look](https://jarinijhoff.github.io/nextup/kapsalon-new-look/) | 2026-10-02 |

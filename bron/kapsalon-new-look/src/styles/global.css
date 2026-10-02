@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* Fonts zelf gehost, alleen latin, met preload in de layout. Syne (breed,
+   eigenzinnig, zwaar) voor koppen, Manrope voor lopende tekst. */
+@font-face {
+  font-family: "Syne Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url(/nextup/kapsalon-new-look/fonts/syne-latin-wght-normal.woff2) format("woff2-variations");
+}
+@font-face {
+  font-family: "Manrope Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(/nextup/kapsalon-new-look/fonts/manrope-latin-wght-normal.woff2) format("woff2-variations");
+}
+@font-face { font-family: "Syne Fallback"; src: local("Arial Bold"), local("Arial"); size-adjust: 112%; ascent-override: 85%; descent-override: 22%; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial"); size-adjust: 100%; ascent-override: 95%; descent-override: 25%; }
+
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Huisstijl afgeleid van de zaak: zwart plafond en wanden, gouden lamp,
+     ronde verlichte spiegels. Donker, met een warm goud als enig accent. */
+  --color-ink: #141414;         /* bijna zwart: achtergrond donkere vlakken, koppen op licht */
+  --color-ink-deep: #0a0a0a;    /* footer */
+  --color-ink-soft: #4f4a44;    /* secundaire tekst op licht, contrast 7:1 */
+  --color-smoke: #2a2825;       /* vlakken op zwart */
+  --color-paper: #f3efe8;       /* warm licht, achtergrond */
+  --color-paper-deep: #e3dcd0;  /* lijnen en vlakken op paper */
+  --color-white: #ffffff;
+  --color-gold: #d4a84b;        /* accent: knoppen op zwart, lijnen */
+  --color-gold-deep: #b98d35;   /* hover */
+  --color-gold-text: #7a5a16;   /* goud als tekst op paper: contrast 5,6:1 */
+  --color-mist: #cfc9bf;        /* lichte tekst op zwart */
+
+  --font-display: "Syne Variable", "Syne Fallback", Arial, sans-serif;
+  --font-body: "Manrope Variable", "Manrope Fallback", Arial, sans-serif;
+
+  --text-xs: 0.8125rem;  --text-xs--line-height: 1.4;
+  --text-sm: 0.9375rem;  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem; --text-base--line-height: 1.6;
+  --text-lg: 1.25rem;    --text-lg--line-height: 1.5;
+  --text-xl: 1.5rem;     --text-xl--line-height: 1.25;
+  --text-2xl: 1.875rem;  --text-2xl--line-height: 1.1;
+  --text-3xl: 2.5rem;    --text-3xl--line-height: 1.02;
+  --text-4xl: 3.25rem;   --text-4xl--line-height: 0.98;
+  --text-5xl: 4.25rem;   --text-5xl--line-height: 0.95;
+  --text-6xl: 5.5rem;    --text-6xl--line-height: 0.92;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-full: 999px;
+
+  --shadow-low: 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body { @apply bg-paper text-ink font-body text-base antialiased; }
+  h1, h2, h3 { @apply font-display font-extrabold; letter-spacing: -0.03em; }
+  :focus-visible { outline: 3px solid var(--color-gold); outline-offset: 3px; }
+  ::selection { background: var(--color-gold); color: var(--color-ink); }
+}
+
+@layer components {
+  .voorstelbalk { @apply bg-ink-deep text-mist; }
+  .voorstelbalk a { @apply text-white hover:text-gold; }
+
+  .placeholder {
+    @apply relative overflow-hidden bg-smoke text-mist;
+    background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgb(255 255 255 / 0.04) 14px 15px);
+  }
+  .placeholder-label { @apply font-body font-semibold text-sm tracking-wide text-mist/85; }
+  .eyebrow { @apply font-display font-bold uppercase text-xs tracking-[0.16em] text-gold-text; }
+  .knop { @apply inline-flex items-center gap-2 bg-gold text-ink font-display font-bold text-base px-5 py-3 rounded-sm hover:bg-gold-deep; }
+  .knop-donker { @apply inline-flex items-center gap-2 bg-ink text-white font-display font-bold text-base px-5 py-3 rounded-sm hover:bg-ink-deep; }
+  .link-lijn { @apply underline underline-offset-4 decoration-2 decoration-gold hover:decoration-ink; }
+}
