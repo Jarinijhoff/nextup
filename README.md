@@ -10,3 +10,6 @@
 | Rozima Hoveniers | Middelharnis | [jarinijhoff.github.io/nextup/rozima-hoveniers](https://jarinijhoff.github.io/nextup/rozima-hoveniers/) | 2026-10-02 |
 | Eetcafé de Geit | Oude-Tonge | [jarinijhoff.github.io/nextup/eetcafe-de-geit](https://jarinijhoff.github.io/nextup/eetcafe-de-geit/) | 2026-10-02 |
 | Kapsalon New Look | Ridderkerk | [jarinijhoff.github.io/nextup/kapsalon-new-look](https://jarinijhoff.github.io/nextup/kapsalon-new-look/) | 2026-10-02 |
+| Autorijschool J. van Noort | Ridderkerk | [jarinijhoff.github.io/nextup/autorijschool-van-noort](https://jarinijhoff.github.io/nextup/autorijschool-van-noort/) | 2026-10-02 |
+| Kapsalon Rasho | Made | [jarinijhoff.github.io/nextup/kapsalon-rasho](https://jarinijhoff.github.io/nextup/kapsalon-rasho/) | 2026-10-02 |
+| MB hoveniersbedrijf | Waalwijk | [jarinijhoff.github.io/nextup/mb-hoveniersbedrijf](https://jarinijhoff.github.io/nextup/mb-hoveniersbedrijf/) | 2026-10-02 |

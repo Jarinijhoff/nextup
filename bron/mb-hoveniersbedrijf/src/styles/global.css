@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Fonts zelf gehost. Schibsted Grotesk in zwaar gewicht: stevig en een beetje
+   eigenwijs, past bij een vakman die zijn werk laat spreken. Libre Franklin voor
+   lopende tekst: nuchter en goed leesbaar op de telefoon. */
+@import "@fontsource-variable/schibsted-grotesk/wght.css";
+@import "@fontsource-variable/libre-franklin/wght.css";
+
+@theme {
+  /* Standaardpalet van Tailwind weg: alleen eigen tokens bestaan. */
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Uit de herofoto en het logo: de tuin bij avond, lichte keramische tegels,
+     en het frisse groen van het logo als enige accent. */
+  --color-night: #0f1418;       /* donkere vlakken en koppen, de avondlucht */
+  --color-night-soft: #1c242a;  /* vlakken op night */
+  --color-haze: #a9b3ba;        /* gedempte tekst op night, 8,3:1 */
+  --color-tile: #efede8;        /* lichte achtergrond, de tegels */
+  --color-tile-deep: #dedbd3;   /* lijnen en vlakken op tile */
+  --color-moss: #4f5650;        /* secundaire tekst op tile, 6,6:1 */
+  --color-lime: #8cc63f;        /* het groen van het logo: knoppen en markeringen */
+  --color-lime-deep: #77ae2c;   /* hover */
+  --color-leaf: #2f6b14;        /* groen als tekst op tile, 6,1:1 */
+  --color-white: #ffffff;
+
+  --font-display: "Schibsted Grotesk Variable", "Arial Black", sans-serif;
+  --font-body: "Libre Franklin Variable", system-ui, sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.4375rem;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.1;
+  --text-3xl: 2.5rem;
+  --text-3xl--line-height: 1.02;
+  --text-4xl: 3.25rem;
+  --text-4xl--line-height: 0.98;
+  --text-5xl: 4.5rem;
+  --text-5xl--line-height: 0.94;
+
+  --radius-sm: 3px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 1rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  body {
+    @apply bg-tile text-night font-body text-base antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-lime);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .placeholder {
+    @apply relative overflow-hidden bg-tile-deep text-moss;
+    /* Tegelvoegen als patroon: herkenbaar als schets, in de stijl van het werk. */
+    background-image:
+      linear-gradient(rgb(15 20 24 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(15 20 24 / 0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .placeholder-label {
+    @apply font-display text-lg font-bold text-night;
+  }
+  .eyebrow {
+    @apply font-display text-sm font-bold uppercase tracking-[0.14em];
+  }
+  .btn-lime {
+    @apply inline-flex items-center gap-2.5 bg-lime text-night font-display font-extrabold text-lg px-6 py-3.5 rounded-sm hover:bg-lime-deep;
+  }
+  .link-lime {
+    @apply underline underline-offset-4 decoration-2 decoration-lime hover:decoration-current;
+  }
+  .aanlever {
+    @apply border-2 border-dashed rounded-sm p-5 sm:p-6 font-display font-bold text-lg;
+  }
+}
